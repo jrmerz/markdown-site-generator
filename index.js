@@ -5,7 +5,7 @@ var bower = require('./lib/bower');
 var path = require('path');
 var fs = require('fs');
 
-var dir = process.argv[3];
+var dir = process.argv[2];
 
 var root = path.join(__dirname, dir);
 var build = 'build';

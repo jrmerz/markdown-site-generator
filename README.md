@@ -73,3 +73,13 @@ and .json files will be ignored.
 
 So if you have some resources your website uses, place them all in a single directory
 and point your .handlebars files at them.  Then add the directory to the .ignore folder.
+
+## Handlebars
+
+You can find complete handlebar documentation [here](http://handlebarsjs.com/)
+
+#### {{@import template}}
+
+The generator adds the ability to reference other templates via {{@import template}}.
+Let's say you have 'header.handlebars' that you want to use in 'default.handlebars'.
+You would simply add {{@import header}} in your default.handlerbars file.
