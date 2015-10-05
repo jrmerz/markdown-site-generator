@@ -13,6 +13,7 @@
     "handlebars": "^4.0.3",
     "marked": "^0.3.5",
     "merge": "^1.2.0",
+    "minimist": "^1.2.0",
     "rimraf": "^2.4.3",
     "walk": "^2.3.9",
     "watch": "^0.16.0"

@@ -5,8 +5,9 @@ var bower = require('./lib/bower');
 var path = require('path');
 var fs = require('fs');
 var watch = require('watch');
+var argv = require('minimist')(process.argv.slice(2));
 
-var dir = process.argv[2];
+var dir = argv._[0];
 
 var root = path.join(process.cwd(), dir);
 var buildDir = 'build';
@@ -35,21 +36,27 @@ config.log = function(msg) {
 };
 
 // setup watcher
-var ignore = ['bower_components', '.git', buildDir];
-watch.watchTree(root,
-  {
-    filter : function(file, dir) {
-      var name = file.replace(/.*\//,'');
-      if( ignore.indexOf(name) > -1 ) {
-        return false;
+if( argv.watch || argv.w ) {
+  config.log('Setting up directory watcher');
+
+  var ignore = ['bower_components', '.git', buildDir];
+  watch.watchTree(root,
+    {
+      filter : function(file, dir) {
+        var name = file.replace(/.*\//,'');
+        if( ignore.indexOf(name) > -1 ) {
+          return false;
+        }
+        return true;
       }
-      return true;
+    },
+    function (f, curr, prev) {
+        build();
     }
-  },
-  function (f, curr, prev) {
-      build();
-  }
-);
+  );
+} else {
+  build();
+}
 
 function build() {
   config.log('***** BUILDING *****');
