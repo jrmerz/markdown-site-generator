@@ -23,6 +23,13 @@ providing a .json or .js file.  The .json or .js file needs to have the same
 name as the .md file.  So to configure index.md, you create a index.json in the
 same directory.
 
+## Command Line Args
+
+- -w or --watch
+  - setup a watch task so for auto rebuilds
+- --seo=[siteurl]
+  - generate a sitemap.xml file containing all pages. 
+
 #### [filename].js or [filename].json
 
 You can provide attributes to render in the handlebars template.  These attributes

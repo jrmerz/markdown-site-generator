@@ -2,6 +2,7 @@ var rimraf = require('rimraf');
 var crawler = require('./lib/crawl');
 var generate = require('./lib/generate');
 var bower = require('./lib/bower');
+var seo = require('./lib/seo');
 var path = require('path');
 var fs = require('fs');
 var watch = require('watch');
@@ -58,7 +59,13 @@ if( argv.watch || argv.w ) {
   build();
 }
 
+var building = false;
 function build() {
+  if( building ) {
+    return console.log('Still building, please try again');
+  }
+  building = true;
+
   config.log('***** BUILDING *****');
   config.log(config.root);
 
@@ -69,7 +76,13 @@ function build() {
       config.log('Generating content in: '+config.buildPath)
       generate.run(config.buildPath, data, function(){
         bower.install(config, function(){
+
+          if( argv.seo ) {
+            seo.build(argv.seo, config.buildPath, data);
+          }
+
           console.log('Done.');
+          building = false;
         });
       });
     });
