@@ -1,5 +1,5 @@
 # markdown-site-generator
-Generate static website from markdown via handlebars, JSON config files.  Include bower support.
+Generate static website from markdown via handlebars, JSON config files.  Includes bower support.
 [Sample](https://github.com/jrmerz/website)
 
 ## Directory Structure
@@ -53,6 +53,7 @@ Basic structure
 {
   // map bower resources
   bower : {
+    // will copy ./bower_components/jquery/dist/jquery.js to ./build/bower/jquery.js
     'jquery.js' : 'jquery/dist/jquery.js'
   },
 
